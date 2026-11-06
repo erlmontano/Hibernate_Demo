@@ -9,6 +9,9 @@ import java.util.List;
 import com.spring.hibernate_demo.dao.StudentDao;
 import com.spring.hibernate_demo.entity.Student;
 
+/**
+ * HibernateDemoApplication
+ */
 @SpringBootApplication
 public class HibernateDemoApplication {
 
