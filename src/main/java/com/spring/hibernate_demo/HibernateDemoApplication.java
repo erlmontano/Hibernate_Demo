@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+
+import java.util.Currency;
 import java.util.List;
 
 import com.spring.hibernate_demo.dao.AppDao;
@@ -11,6 +13,7 @@ import com.spring.hibernate_demo.dao.StudentDao;
 import com.spring.hibernate_demo.entity.Course;
 import com.spring.hibernate_demo.entity.Instructor;
 import com.spring.hibernate_demo.entity.InstructorDetail;
+import com.spring.hibernate_demo.entity.Review;
 import com.spring.hibernate_demo.entity.Student;
 
 /**
@@ -47,7 +50,18 @@ public class HibernateDemoApplication {
 			// createInstructorWithCourses(app);
 			// findInstructorWithCourses(app);
 			// findCoursesForInstructor(app);
-			findInstructorWithCoursesJoinFetch(app);
+			// findInstructorWithCoursesJoinFetch(app);
+			// updateInstructor(app);
+			// deleteInstructorOnly(app);
+			// createCourseAndReviews(app);
+			// retrieveCourseAndReviews(app);
+			// deleteCourseAndReviews(app);
+			// createCourseAndStudents(app);
+			// findCourseAndStudents(app);
+			// findStudentAndCourses(app);
+			// addMoreCoursesForStuent(app);
+			// deleteCourseById(app);
+			deleteStudent(app);
 		};
 	}
 
@@ -221,5 +235,130 @@ public class HibernateDemoApplication {
 		Instructor ins = app.findInstructorByIdJoinFetch(id);
 		System.out.println("Instructor: " + ins);
 		System.out.println("Courses: " + ins.getCourses());
+	}
+
+	private void updateInstructor(AppDao app) {
+		int id = 6;
+		System.out.println("Find instructor id: " + id);
+		Instructor ins = app.findInstructorById(id);
+
+		//change instructor's data
+		ins.setFirstName("Verde");
+
+		//update the data
+		System.out.println("Update!");
+		app.update(ins);
+	}
+	private void deleteInstructorOnly(AppDao app){
+		int id = 10;
+		System.out.println("Delete instructor: " + id);
+
+		// Instructor instructor = app.findInstructorById(id);
+		app.deleteInstructorById(id);
+		System.out.println("Deleted successfully");
+	}
+
+	private void createCourseAndReviews(AppDao app) {
+		//create a course
+		Course course = new Course("How to Speed Run String in 1 Day");
+
+		//add some reviews
+		course.addReview(new Review("Great speed 2x...loved it!!!"));
+		course.addReview(new Review("I wanted the speed 0.75x :(("));
+		course.addReview(new Review("Hoping to do a speed of 3x :D. Anyways, nice"));
+		
+		//save the course
+		System.out.println("Course saved!");
+		app.save(course);
+	}
+
+	private void retrieveCourseAndReviews(AppDao app){
+		int id = 4;
+		System.out.println("Get course and reviews from id: " + id);
+		//get the course and reviews
+		Course course = app.findCourseAndReviewsByCourseId(id);
+
+		//print the course
+		System.out.println(course);
+
+		//print the reviews
+		System.out.println(course.getReview());
+	}
+
+	private void deleteCourseAndReviews(AppDao app){
+		int id = 3;
+		System.out.println("Delete course: " + id);
+
+		app.deleteCourseById(id);
+		System.out.println("Deleted Successfully");
+	}
+
+	private void createCourseAndStudents(AppDao app) {
+		//create a course
+		Course course = new Course("How to Be A FullStack Dev in Half a Day");
+
+		//create the students
+		Student student1 = new Student("Blue", "Ranger", "blue.ranger@example.com");
+		Student student2 = new Student("Barats", "Sher", "bara.sher@example.com");
+
+		//add student to the course
+		course.addStudent(student1);
+		course.addStudent(student2);
+
+		//save the course and associated students
+		app.save(course);
+		System.out.println("Successfully enrolled");
+	}
+
+	private void findCourseAndStudents(AppDao app) {
+		int id = 6;
+
+		Course course = app.findCourseAndStudentByCourseId(id);
+
+		System.out.println("Course: " + course);
+		System.out.println("Students: " + course.getStudents());
+	}
+
+	private void findStudentAndCourses(AppDao app){
+		int id = 4;
+		Student student = app.findStudentAndCoursesByStudentId(id);
+
+		System.out.println("Student: " + student);
+		System.out.println("Courses: " + student.getCourses());
+	}
+
+	private void addMoreCoursesForStuent(AppDao app) {
+		int id = 4;
+
+		Student student = app.findStudentAndCoursesByStudentId(id);
+
+		Course course1 = new Course("How to Test without Running Application");
+		Course course2 = new Course("How to Develop without Computer");
+		Course course3 = new Course("How to be a Legit Developer");
+
+		student.addCourse(course1);
+		student.addCourse(course2);
+		student.addCourse(course3);
+		
+		System.out.println("Successfully enrolled to new courses!");
+
+		app.update(student);
+	}
+
+	private void deleteCourseById(AppDao app){
+		int id = 5;
+
+		System.out.println("Delete course: " + id);
+
+		app.deleteCourseById(id);
+		System.out.println("Deleted successfully");
+	}
+	
+	private void deleteStudent(AppDao app){
+		int id = 5;
+		System.out.println("Delete Student: " + id);
+
+		app.deleteStudentById(id);
+		System.out.println("Deleted Successfully!");
 	}
 }
