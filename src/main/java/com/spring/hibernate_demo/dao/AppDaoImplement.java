@@ -13,11 +13,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
+/**
+ * 
+ * AppDaoImplement.
+ */
+
 @Repository
 public class AppDaoImplement implements AppDao{
 
     private EntityManager em;
-
     public AppDaoImplement(EntityManager em){
         this.em = em;
     }
@@ -65,7 +69,7 @@ public class AppDaoImplement implements AppDao{
     public List<Course> findCoursesByInstructorId(int theId){
         //create query
         TypedQuery<Course> query = em.createQuery(
-                            "FROM Course WHERE instructor.id=:data", Course.class);
+                        "FROM Course WHERE instructor.id=:data", Course.class);
     query.setParameter("data", theId);
 
     List<Course> courses = query.getResultList();
@@ -75,11 +79,12 @@ public class AppDaoImplement implements AppDao{
     @Override 
     public Instructor findInstructorByIdJoinFetch(int theId){
         //create query
-        TypedQuery<Instructor> query = em.createQuery("SELECT i from Instructor i " 
-                                                    + "JOIN FETCH i.courses " 
-                                                    + "JOIN FETCH i.instructorDeets " 
-                                                    + "WHERE i.id=:data",
-                                                    Instructor.class);
+        TypedQuery<Instructor> query = 
+            em.createQuery("SELECT i from Instructor i " 
+                            + "JOIN FETCH i.courses " 
+                            + "JOIN FETCH i.instructorDeets " 
+                            + "WHERE i.id=:data",
+                            Instructor.class);
         query.setParameter("data", theId);
 
         Instructor in = query.getSingleResult();

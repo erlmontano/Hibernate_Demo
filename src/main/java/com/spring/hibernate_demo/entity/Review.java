@@ -7,6 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * Review.
+ */
+
 @Entity 
 @Table (name = "review")
 public class Review {

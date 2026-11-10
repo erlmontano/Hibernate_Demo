@@ -15,6 +15,10 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
+/**
+ * Instructor.
+ */
+
 @Entity 
 @Table (name = "instructor")
 public class Instructor {
@@ -94,10 +98,11 @@ public class Instructor {
                ", email=" + email + "]";
     }
 
-    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, 
-                                                                            CascadeType.MERGE,
-                                                                            CascadeType.PERSIST,
-                                                                            CascadeType.REFRESH})
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, 
+                                        cascade = {CascadeType.DETACH, 
+                                                    CascadeType.MERGE,
+                                                    CascadeType.PERSIST,
+                                                    CascadeType.REFRESH})
     private List<Course> courses;
 
     public void add(Course tcourse) {

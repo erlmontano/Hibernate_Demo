@@ -16,6 +16,10 @@ import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Course.
+ */
+
 @Entity 
 @Table (name = "course")
 public class Course {

@@ -9,6 +9,10 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
+/**
+ * InstructorDetail.
+ */
+
 @Entity 
 @Table(name = "instructor_detail")
 public class InstructorDetail {

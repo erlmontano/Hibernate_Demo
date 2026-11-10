@@ -7,16 +7,20 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 import com.spring.hibernate_demo.entity.Student;
 
+/**
+ * StudentDaoImplement.
+ */
 @Repository
 public class StudentDaoImplement implements StudentDao {
 
     private EntityManager em;
+
     public StudentDaoImplement(EntityManager em) {
         this.em = em;
     }
 
-    @Override 
-    @Transactional 
+    @Override
+    @Transactional
     public void save(Student thStudent) {
         em.persist(thStudent);
     }
@@ -26,35 +30,37 @@ public class StudentDaoImplement implements StudentDao {
         return em.find(Student.class, id);
     }
 
-    public List<Student> findAll(){
-        TypedQuery<Student> query = em.createQuery("FROM Student order by lastName", Student.class);
+    public List<Student> findAll() {
+        TypedQuery<Student> query = 
+            em.createQuery("FROM Student order by lastName", Student.class);
         return query.getResultList();
     }
 
-    @Override 
+    @Override
     public List<Student> findByLastName(String lastname) {
-    TypedQuery<Student> query = em.createQuery("FROM Student WHERE lastName=:data", Student.class);
-    
-    query.setParameter("data", lastname);
-    
-    return query.getResultList();
+        TypedQuery<Student> query = 
+            em.createQuery("FROM Student WHERE lastName=:data", Student.class);
+
+        query.setParameter("data", lastname);
+
+        return query.getResultList();
     }
 
-    @Override 
-    @Transactional 
+    @Override
+    @Transactional
     public void update(Student thStudent) {
         em.merge(thStudent);
     }
 
-    @Override 
-    @Transactional 
+    @Override
+    @Transactional
     public void delete(Integer id) {
         Student student = em.find(Student.class, id);
         em.remove(student);
     }
 
-    @Override 
-    @Transactional 
+    @Override
+    @Transactional
     public int deleteAll() {
         int numRows = em.createQuery("DELETE FROM Student").executeUpdate();
         return numRows;

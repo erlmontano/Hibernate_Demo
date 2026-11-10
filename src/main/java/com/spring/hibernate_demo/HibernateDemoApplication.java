@@ -5,11 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
-import java.util.Currency;
 import java.util.List;
 
 import com.spring.hibernate_demo.dao.AppDao;
-import com.spring.hibernate_demo.dao.StudentDao;
+// import com.spring.hibernate_demo.dao.StudentDao;
 import com.spring.hibernate_demo.entity.Course;
 import com.spring.hibernate_demo.entity.Instructor;
 import com.spring.hibernate_demo.entity.InstructorDetail;
@@ -17,7 +16,7 @@ import com.spring.hibernate_demo.entity.Review;
 import com.spring.hibernate_demo.entity.Student;
 
 /**
- * HibernateDemoApplication
+ * HibernateDemoApplication.
  */
 @SpringBootApplication
 public class HibernateDemoApplication {
@@ -67,7 +66,8 @@ public class HibernateDemoApplication {
 
 	// private void createStudent(StudentDao studentDao) {
 	// 	System.out.println("Creating student information...");
-	// 	Student student = new Student("Light", "Yagami", "light.yagami@example.com");
+	// 	Student student = new Student("Light", "Yagami", 
+	// "light.yagami@example.com");
 	// 	System.out.println("Saving student information...");
 	// 	studentDao.save(student);
 	// 	System.out.println("Saved! Generated id: " + student.getId());
@@ -122,8 +122,10 @@ public class HibernateDemoApplication {
 
 	private void createInstructor(AppDao app){
 		//create the instructor and details
-		Instructor ins = new Instructor("Carbon", "Nara", "carbon@example.com");
-		InstructorDetail deets = new InstructorDetail("Food", "How to Cook");
+		Instructor ins = new Instructor("Carbon", "Nara", 
+		"carbon@example.com");
+		InstructorDetail deets = new InstructorDetail("Food", 
+		"How to Cook");
 
 		//associate the objects
 		ins.setInstructorDeets(deets);
@@ -265,7 +267,8 @@ public class HibernateDemoApplication {
 		//add some reviews
 		course.addReview(new Review("Great speed 2x...loved it!!!"));
 		course.addReview(new Review("I wanted the speed 0.75x :(("));
-		course.addReview(new Review("Hoping to do a speed of 3x :D. Anyways, nice"));
+		course.addReview(new Review(
+			"Hoping to do a speed of 3x :D. Anyways, nice"));
 		
 		//save the course
 		System.out.println("Course saved!");
@@ -298,8 +301,10 @@ public class HibernateDemoApplication {
 		Course course = new Course("How to Be A FullStack Dev in Half a Day");
 
 		//create the students
-		Student student1 = new Student("Blue", "Ranger", "blue.ranger@example.com");
-		Student student2 = new Student("Barats", "Sher", "bara.sher@example.com");
+		Student student1 = new Student("Blue", "Ranger", 
+		"blue.ranger@example.com");
+		Student student2 = new Student("Barats", "Sher", 
+		"bara.sher@example.com");
 
 		//add student to the course
 		course.addStudent(student1);
@@ -332,9 +337,12 @@ public class HibernateDemoApplication {
 
 		Student student = app.findStudentAndCoursesByStudentId(id);
 
-		Course course1 = new Course("How to Test without Running Application");
-		Course course2 = new Course("How to Develop without Computer");
-		Course course3 = new Course("How to be a Legit Developer");
+		Course course1 = new Course(
+			"How to Test without Running Application");
+		Course course2 = new Course(
+			"How to Develop without Computer");
+		Course course3 = new Course(
+			"How to be a Legit Developer");
 
 		student.addCourse(course1);
 		student.addCourse(course2);

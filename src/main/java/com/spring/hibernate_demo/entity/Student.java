@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  For student entity
+ *  For student entity.
  */
 @Entity 
 @Table 
