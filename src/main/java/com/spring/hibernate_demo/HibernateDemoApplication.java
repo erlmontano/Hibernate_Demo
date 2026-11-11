@@ -4,9 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-
 import java.util.List;
-
 import com.spring.hibernate_demo.dao.AppDao;
 // import com.spring.hibernate_demo.dao.StudentDao;
 import com.spring.hibernate_demo.entity.Course;
@@ -44,7 +42,7 @@ public class HibernateDemoApplication {
 			// createInstructor(app);
 			// findInstructor(app);
 			// // deleteInstructor(app);
-			// findInstructorDetal(app);
+			// findInstructorDetail(app);
 			// deleteInstructorDetail(app);
 			// createInstructorWithCourses(app);
 			// findInstructorWithCourses(app);
@@ -64,6 +62,10 @@ public class HibernateDemoApplication {
 		};
 	}
 
+	/**
+	 * Create a student.
+	 * @param app
+	 */
 	// private void createStudent(StudentDao studentDao) {
 	// 	System.out.println("Creating student information...");
 	// 	Student student = new Student("Light", "Yagami", 
@@ -73,12 +75,21 @@ public class HibernateDemoApplication {
 	// 	System.out.println("Saved! Generated id: " + student.getId());
 	// }
 
+
+	/**
+	 * Read Student from database.
+	 * @param app
+	 */
 	// private void readStudent(StudentDao studentDao) {
 	// 	System.out.println("Retrieving student id 2...");
 	// 	Student student = studentDao.findById(2);
 	// 	System.out.println("Found the student " + student);
 	// }
 
+	/**
+	 * Query student.
+	 * @param app
+	 */
 	// private void queryStudents(StudentDao studentDao) {
 	// 	List<Student> students = studentDao.findAll();
 	// 	for(Student s:students) {
@@ -86,6 +97,10 @@ public class HibernateDemoApplication {
 	// 	}
 	// }
 
+	/**
+	 * Query student by their last name.
+	 * @param app
+	 */
 	// private void queryStudentLastName(StudentDao studentDao) {
 	// 	List<Student> students = studentDao.findByLastName("Yagamata");
 	// 	for(Student s : students){
@@ -93,6 +108,10 @@ public class HibernateDemoApplication {
 	// 	}
 	// }
 
+	/**
+	 * Update student information.
+	 * @param app
+	 */
 	// private void updateStudent(StudentDao studentDao) {
 	// 	int id = 1;
 	// 	System.out.println("Student ID: " + id);
@@ -107,6 +126,10 @@ public class HibernateDemoApplication {
 	// 	System.out.println("Updated student information: " + student);
 	// }
 
+	/**
+	 * delete student.
+	 * @param app
+	 */
 	// private void deleteStudent(StudentDao studentDao) {
 	// 	int id = 5;
 	// 	System.out.println("Delete ID: " + id);
@@ -114,12 +137,20 @@ public class HibernateDemoApplication {
 	// 	studentDao.delete(id);
 	// }
 
+	/**
+	 * Delete all student in the database.
+	 * @param app
+	 */
 	// private void deleteAllStudent(StudentDao studentDao){
 	// 	System.out.println("Deleting all student information...");
 	// 	int rowsDeleted = studentDao.deleteAll();
 	// 	System.out.println("Number of deleted rows: " + rowsDeleted);
 	// }
 
+	/**
+	 * Create instructor.
+	 * @param app
+	 */
 	private void createInstructor(AppDao app){
 		//create the instructor and details
 		Instructor ins = new Instructor("Carbon", "Nara", 
@@ -138,6 +169,10 @@ public class HibernateDemoApplication {
 		app.save(ins);
 	}
 
+	/**
+	 * find the specific instructor in the database.
+	 * @param app
+	 */
 	private void findInstructor(AppDao app){
 		int id = 4;
 		System.out.println("Find id: " + id);
@@ -148,6 +183,10 @@ public class HibernateDemoApplication {
 		System.out.println("Details: " + ins.getInstructorDeets());
 	}
 
+	/**
+	 * Delete instructor from database.
+	 * @param app
+	 */
 	private void deleteInstructor(AppDao app){
 		int id = 3; 
 		System.out.println("Delete id: " + id);
@@ -156,7 +195,11 @@ public class HibernateDemoApplication {
 		System.out.println("Deleted successfully!");
 	}
 
-	private void findInstructorDetal(AppDao app){
+	/**
+	 * Find instructor detail.
+	 * @param app
+	 */
+	private void findInstructorDetail(AppDao app){
 		// get the instructor detail object
 		int id = 3;
 		InstructorDetail inDeets = app.findInstructorDetailById(id);
@@ -168,6 +211,10 @@ public class HibernateDemoApplication {
 		System.out.println("Instructor: " + inDeets.getInstructor());
 	}
 
+	/**
+	 * delete instructor detail.
+	 * @param app
+	 */
 	private void deleteInstructorDetail(AppDao app){
 		int id = 6	;
 		System.out.println("Delete id: " + id);
@@ -176,6 +223,10 @@ public class HibernateDemoApplication {
 		System.out.println("Deleted successfully!");
 	}
 
+	/**
+	 * create instructor with their courses.
+	 * @param app
+	 */
 	private void createInstructorWithCourses(AppDao app){
 		//create the instructor and details
 		Instructor ins = new Instructor("Kurt",
@@ -201,6 +252,10 @@ public class HibernateDemoApplication {
 		app.save(ins);
 	}
 
+	/**
+	 * find instructor with course in databse.
+	 * @param app
+	 */
 	private void findInstructorWithCourses(AppDao app) {
 		int id = 24;
 		System.out.println("Find instructor id: " + id);
@@ -211,6 +266,10 @@ public class HibernateDemoApplication {
 		System.out.println("Courses: " + ins.getCourses());
 	}
 
+	/**
+	 * find courses with instructor.
+	 * @param app
+	 */
 	private void findCoursesForInstructor(AppDao app){
 		int id = 5;
 
@@ -231,6 +290,10 @@ public class HibernateDemoApplication {
 		System.out.println(ins.getCourses());
 	}
 
+	/**
+	 * find instructor with courses using join fetch.
+	 * @param app
+	 */
 	private void findInstructorWithCoursesJoinFetch(AppDao app){
 		int id = 11;
 		System.out.println("Find instructor id: " + id);
@@ -239,6 +302,10 @@ public class HibernateDemoApplication {
 		System.out.println("Courses: " + ins.getCourses());
 	}
 
+	/**
+	 * update instructor in database.
+	 * @param app
+	 */
 	private void updateInstructor(AppDao app) {
 		int id = 6;
 		System.out.println("Find instructor id: " + id);
@@ -251,6 +318,11 @@ public class HibernateDemoApplication {
 		System.out.println("Update!");
 		app.update(ins);
 	}
+
+	/**
+	 * delete instructor only.
+	 * @param app
+	 */
 	private void deleteInstructorOnly(AppDao app){
 		int id = 10;
 		System.out.println("Delete instructor: " + id);
@@ -260,6 +332,10 @@ public class HibernateDemoApplication {
 		System.out.println("Deleted successfully");
 	}
 
+	/**
+	 * create course with review.
+	 * @param app
+	 */
 	private void createCourseAndReviews(AppDao app) {
 		//create a course
 		Course course = new Course("How to Speed Run String in 1 Day");
@@ -275,6 +351,10 @@ public class HibernateDemoApplication {
 		app.save(course);
 	}
 
+	/**
+	 * retrieve course and reviews.
+	 * @param app
+	 */
 	private void retrieveCourseAndReviews(AppDao app){
 		int id = 4;
 		System.out.println("Get course and reviews from id: " + id);
@@ -288,6 +368,10 @@ public class HibernateDemoApplication {
 		System.out.println(course.getReview());
 	}
 
+	/**
+	 * delete course and reviews.
+	 * @param app
+	 */
 	private void deleteCourseAndReviews(AppDao app){
 		int id = 3;
 		System.out.println("Delete course: " + id);
@@ -296,6 +380,10 @@ public class HibernateDemoApplication {
 		System.out.println("Deleted Successfully");
 	}
 
+	/**
+	 * create course and students.
+	 * @param app
+	 */
 	private void createCourseAndStudents(AppDao app) {
 		//create a course
 		Course course = new Course("How to Be A FullStack Dev in Half a Day");
@@ -315,6 +403,10 @@ public class HibernateDemoApplication {
 		System.out.println("Successfully enrolled");
 	}
 
+	/**
+	 * find course and student
+	 * @param app
+	 */
 	private void findCourseAndStudents(AppDao app) {
 		int id = 6;
 
@@ -324,6 +416,10 @@ public class HibernateDemoApplication {
 		System.out.println("Students: " + course.getStudents());
 	}
 
+	/**
+	 * find students with courses.
+	 * @param app
+	 */
 	private void findStudentAndCourses(AppDao app){
 		int id = 4;
 		Student student = app.findStudentAndCoursesByStudentId(id);
@@ -332,6 +428,10 @@ public class HibernateDemoApplication {
 		System.out.println("Courses: " + student.getCourses());
 	}
 
+	/**
+	 * add more courses.
+	 * @param app
+	 */
 	private void addMoreCoursesForStuent(AppDao app) {
 		int id = 4;
 
@@ -353,6 +453,10 @@ public class HibernateDemoApplication {
 		app.update(student);
 	}
 
+	/**
+	 * delete course.
+	 * @param app
+	 */
 	private void deleteCourseById(AppDao app){
 		int id = 5;
 
@@ -362,6 +466,10 @@ public class HibernateDemoApplication {
 		System.out.println("Deleted successfully");
 	}
 	
+	/**
+	 * delete a student from the database.
+	 * @param app
+	 */
 	private void deleteStudent(AppDao app){
 		int id = 5;
 		System.out.println("Delete Student: " + id);
